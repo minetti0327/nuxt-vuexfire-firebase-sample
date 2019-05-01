@@ -1,18 +1,14 @@
 <template>
   <div>
     <div>
-      <ul>
-        <li v-for="(todo, index) in todos" :key="index">
-          <ul>
-            <li>title: {{ todo.title }}</li>
-          </ul>
-        </li>
+      <ul v-for="(todo, index) in todos" :key="index">
+        <li>title: {{ todo.title }}</li>
       </ul>
     </div>
     <div class="form">
       <div>
         add todo:
-        <input type="text" name="email" v-model="todo">
+        <input type="text" name="title" v-model="title">
       </div>
       <div>
         <button @click="submit">Submit</button>
@@ -28,11 +24,11 @@ import db from '@/plugins/firebase'
 export default {
   data: () => {
     return {
-      todo: ''
+      title: ''
     }
   },
   computed: {
-    ...mapGetters({ users: 'todo/todos' })
+    ...mapGetters({ todos: 'todo/todos' })
   },
   created: function() {
     this.$store.dispatch('todo/init')
@@ -40,11 +36,11 @@ export default {
   methods: {
     async submit() {
       const todo = {
-        todo: this.todo
+        title: this.title
       }
-      const usersRef = db.collection('todos')
-      usersRef.add(todo)
-      this.todo = ''
+      const ref = db.collection('todos')
+      ref.add(todo)
+      this.title = ''
     }
   }
 }

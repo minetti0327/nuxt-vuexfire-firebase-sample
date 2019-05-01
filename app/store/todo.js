@@ -15,8 +15,6 @@ export const getters = {
 
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }) => {
-    // this will unbind any previously bound ref to 'todos'
-
     bindFirestoreRef('todos', todos)
       .then(() => {
         // commit('setTodosLoaded', true)
