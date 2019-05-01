@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "sample-firebase",
+    "dev": "sample-firebase"
+  }
+}
